@@ -23,11 +23,19 @@ for measurement in preticipation_data:
         preticipation_total[month-1] += measurement['value']
 
 print(preticipation_total)
-
-with open('participation_total.json', 'w') as f:
+#saving results in json file
+with open('preticipation_total.json', 'w') as f:
     json.dump(preticipation_total, f)
-#summing all the monthly preticipation (first splitting per month)
-        
+
+#summing all the monthly preticipation to get the yearly preticipation (first splitting per month)
+all_year_preticipation = sum(preticipation_total)
+print(all_year_preticipation)
+
+#calculating relative preticipation
+relative_preticipation = [0]*12
+for i in range (12):
+    relative_preticipation[i]=((int(preticipation_total[i])/int(all_year_preticipation))*100)
+print(relative_preticipation)
 
     
 
